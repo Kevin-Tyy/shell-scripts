@@ -12,20 +12,22 @@
 # To run from web
 # curl -sL https://git.io/JvtZ5 | sh -s repo_uri repo_folder
 
-URL="https://github.com/Kevin-Tyy/host_buddy.git"        # mandatory
-FOLDER=""D:\shell""     # mandatory
-BRANCH="$3"     # optional
+echo "Enter repo_uri, repo_destination_folder"
+echo "repo_uri:"
+read URL # mandatory
+echo "repo_destination_folder:"
+read FOLDER # mandatory
 
-if [ -z "$URL" ]
-  then
-    echo "No Repository URL supplied"
-    exit 1
+BRANCH="main" # optional
+
+if [ -z "$URL" ]; then
+  echo "No Repository URL supplied"
+  exit 1
 fi
 
-if [ -z "$FOLDER" ]
-  then
-    echo "No Repository folder supplied"
-    exit 1
+if [ -z "$FOLDER" ]; then
+  echo "No Repository folder supplied"
+  exit 1
 fi
 
 set -e # exit if some part as exit != 0
@@ -83,14 +85,13 @@ git fetch --unshallow
 # git fetch --depth=2147483647
 
 # I checkout the input branch only when supplied
-if [ ! -z "$BRANCH" ]
-  then
-    echo
-    echo "⏬ Checking out $BRANCH"
-    echo
+if [ ! -z "$BRANCH" ]; then
+  echo
+  echo "⏬ Checking out $BRANCH"
+  echo
 
-    # Now I checkout our default branch
-    git checkout "$BRANCH"
+  # Now I checkout our default branch
+  git checkout "$BRANCH"
 fi
 
 echo "If you are in detached HEAD state, you can run something like the following to fix it:"
